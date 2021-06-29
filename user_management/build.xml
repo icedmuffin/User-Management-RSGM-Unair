@@ -522,7 +522,7 @@
 
   </target>
 
-  <target name="zaidan" depends="remove, all, install">
+  <target name="fast" depends="remove, all, install">
 
   </target>
 
