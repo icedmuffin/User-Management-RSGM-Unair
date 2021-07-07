@@ -22,14 +22,13 @@ Naufal Fakhri Ardhan Laxito - 05211840000130
   
 Progress per:  
   
-15 juni 2021  
-  Requirement permodul - DONE. 
+15 Juni 2021  
+Requirement permodul - DONE. 
       
     - high level requirement  
     - GUI storyborad  
     - use case  
     - rubustness analysis  
     
-  
-
-
+7 Juli 2021
+Modul JKN diperbarui
