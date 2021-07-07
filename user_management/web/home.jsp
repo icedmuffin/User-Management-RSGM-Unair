@@ -30,6 +30,9 @@ if(isLogin == null || !isLogin.equals("1")){
 						<li class="pure-menu-item">
 							<a href="?act=pasien" class="pure-menu-link">pasien</a>
 						</li>
+						<li class="pure-menu-item">
+							<a href="?act=jkn" class="pure-menu-link">jkn</a>
+						</li>
 						<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
 							<a href="#" class="pure-menu-link">akun</a>
 							<ul class="pure-menu-children">
@@ -71,6 +74,8 @@ if(isLogin == null || !isLogin.equals("1")){
 			<jsp:include page="WEB-INF/jsp/pasien.jsp"/>
 			<% }else if(act.equals("delete_pasien")){ %>
 			<jsp:include page="WEB-INF/jsp/delete_pasien.jsp"/>
+			<% }else if(act.equals("jkn")){ %>
+			<jsp:include page="WEB-INF/jsp/jkn/jkn.jsp"/>
 			<% } %>
 			</div>
 		</div>
