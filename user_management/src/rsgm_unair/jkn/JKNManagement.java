@@ -1,4 +1,4 @@
-package rsgm_unair.user_management;
+package rsgm_unair.jkn;
 
 import rsgm_unair.config.DatabaseConfig;
 import rsgm_unair.shared.CouchHelper;
@@ -162,6 +162,6 @@ public class JKNManagement{
 		jkn.put("faskesTingkatI","");
 			
         return jkn;
-    }	
+    }
 	
 }
