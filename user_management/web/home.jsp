@@ -80,6 +80,8 @@ if(isLogin == null || !isLogin.equals("1")){
 			<jsp:include page="WEB-INF/jsp/jkn/delete_jkn.jsp"/>
 			<% }else if(act.equals("buat_jkn")){ %>
 			<jsp:include page="WEB-INF/jsp/jkn/buat_jkn.jsp"/>
+			<% }else if(act.equals("edit_jkn")){ %>
+			<jsp:include page="WEB-INF/jsp/jkn/edit_jkn.jsp"/>
 			<% } %>
 			</div>
 		</div>
