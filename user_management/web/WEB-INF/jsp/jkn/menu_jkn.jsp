@@ -56,7 +56,7 @@ if(jkn == null){
 %>
 
 <div class="pure-g">
-	<div class="pure-u-1-3" align="left">
+	<div class="pure-u-1-1" align="center">
 		<h2>Jaminan Kesehatan Nasional</h2>
 		<hr>
 		<% if(resp != null && resp.getKode() == Response.ERROR){ %>
@@ -65,55 +65,13 @@ if(jkn == null){
 			<h4 align="center" style="background-color:blue;"><%=resp.getPesan()%></h4>
 		<% } %>
 	</div>
-	<div class="pure-u-2-3"></div>
-</div>
-<div class="pure-g">
-	<div class="pure-u-1-3" align="left">
-		<form class="pure-form pure-form-aligned" method="post" action="?act=jkn">
-		<input type="hidden" name="action" value="add_edit_jkn" />
-		<fieldset>
-			<div class="pure-control-group">
-				<label for="aligned-name">NIK</label>
-				<input type="text" name="nik" id="aligned-name" placeholder="NIK" value="<%=jkn.getString("nik")%>" />
-			</div>
-			<div class="pure-control-group">
-				<label for="aligned-name">Nama</label>
-				<input type="text" name="nama" id="aligned-name" placeholder="Nama" value="<%=jkn.getString("nama")%>" />
-			</div>
-			<div class="pure-control-group">
-				<label for="aligned-name">Tempat Tanggal Lahir</label>
-				<input type="text" name="ttl" id="aligned-name" placeholder="Tempat Tanggal Lahir" value="<%=jkn.getString("ttl")%>" />
-			</div>
-			<div class="pure-control-group">
-				<label for="aligned-name">Alamat</label>
-				<input type="text" name="alamat" id="aligned-name" placeholder="Alamat" value="<%=jkn.getString("alamat")%>" />
-			</div>
-			<div class="pure-control-group">
-				<label for="aligned-name">Nomor Handphone</label>
-				<input type="text" name="noHP" id="aligned-name" placeholder="Nomor Handphone" value="<%=jkn.getString("noHP")%>" />
-			</div>
-			<div class="pure-control-group">
-				<label for="aligned-name">Email</label>
-				<input type="text" name="email" id="aligned-name" placeholder="Email" value="<%=jkn.getString("email")%>" />
-			</div>
-			<div class="pure-control-group">
-				<label for="aligned-name">Faskes Tingkat I</label>
-				<input type="text" name="faskesTingkatI" id="aligned-name" placeholder="Faskes Tingkat I" value="<%=jkn.getString("faskesTingkatI")%>" />
-			</div>
-			
-			<div class="pure-controls">
-				
-				<input type="submit" class="pure-button pure-button-primary" value="Simpan">
-			</div>
-		</fieldset>
-	</form>
-	</div>
-	<div class="pure-u-2-3" align="left">
-		<p>menampilkan <%=pageJKN.getResultFrom()%> - <%=pageJKN.getResultTo()%> dari total <%=pageJKN.getTotalResults()%></p>
+	<div class="pure-u-1-1"></div>
+	<div class="pure-u-1-1" align="center">
+		<p>Menampilkan <%=pageJKN.getResultFrom()%> - <%=pageJKN.getResultTo()%> dari total <%=pageJKN.getTotalResults()%> data pasien Jaminan Kesehatan Nasional</p>
 		<form action="?act=jkn" method="post" class="pure-form">
 			<input type="hidden" name="action" value="cari_jkn" />
 			<input type="text" name="jkn_search_key" class="pure-input-rounded" placeholder="NIK" value="<%=searchKey%>" />
-			<input type="submit" class="pure-button pure-button-primary" value="cari" />
+			<input type="submit" class="pure-button pure-button-primary" value="Cari" />
 		</form>
 		<p></p>
 		<table class="pure-table">
@@ -144,7 +102,7 @@ if(jkn == null){
 					<td><%=pageJKN.getResultList().get(i).getString("email")%></td>
 					<td><%=pageJKN.getResultList().get(i).getString("faskesTingkatI")%></td>
 					<td>
-						<a href="?act=jkn&nik=<%=pageJKN.getResultList().get(i).getString("nik")%>">Edit</a>
+						<a href="?act=edit_jkn&nik=<%=pageJKN.getResultList().get(i).getString("nik")%>">Edit</a>
 						|
 						<a href="?act=delete_jkn&nik=<%=pageJKN.getResultList().get(i).getString("nik")%>">Delete</a>
 					</td>
