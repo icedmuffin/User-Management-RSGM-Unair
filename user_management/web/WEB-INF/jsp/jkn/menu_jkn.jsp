@@ -16,22 +16,6 @@ if(searchKey == null){
 	searchKey = "";
 }
 
-
-if(action != null && action.equals("add_edit_jkn")){
-	
-	FormJKN fj = new FormJKN();
-	fj.setNik(request.getParameter("nik"));
-	fj.setNama(request.getParameter("nama"));
-	fj.setTtl(request.getParameter("ttl"));
-	fj.setAlamat(request.getParameter("alamat"));
-	fj.setNoHP(request.getParameter("noHP"));
-	fj.setEmail(request.getParameter("email"));
-	fj.setFaskesTingkatI(request.getParameter("faskesTingkatI"));
-	
-	resp = JKNManagement.CreateEditJKN(fj);
-	
-}
-
 InputPagingJKN ipj = new InputPagingJKN();
 ipj.setPerPage(10);
 
@@ -49,10 +33,6 @@ if(nik != null && !nik.trim().equals("")){
 	jkn = JKNManagement.findJKN(nik);
 }
 
-if(jkn == null){
-	jkn = JKNManagement.createNewJKN();
-}
-
 %>
 
 <div class="pure-g">
@@ -67,6 +47,11 @@ if(jkn == null){
 	</div>
 	<div class="pure-u-1-1"></div>
 	<div class="pure-u-1-1" align="center">
+		<td>
+		<a href="?act=buat_jkn">
+		<button>Buat data pasien baru</button>
+		</a>
+		</td>
 		<p>Menampilkan <%=pageJKN.getResultFrom()%> - <%=pageJKN.getResultTo()%> dari total <%=pageJKN.getTotalResults()%> data pasien Jaminan Kesehatan Nasional</p>
 		<form action="?act=jkn" method="post" class="pure-form">
 			<input type="hidden" name="action" value="cari_jkn" />
