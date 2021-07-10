@@ -76,6 +76,8 @@ if(isLogin == null || !isLogin.equals("1")){
 			<jsp:include page="WEB-INF/jsp/delete_pasien.jsp"/>
 			<% }else if(act.equals("jkn")){ %>
 			<jsp:include page="WEB-INF/jsp/jkn/menu_jkn.jsp"/>
+			<% }else if(act.equals("delete_jkn")){ %>
+			<jsp:include page="WEB-INF/jsp/jkn/delete_jkn.jsp"/>
 			<% } %>
 			</div>
 		</div>
