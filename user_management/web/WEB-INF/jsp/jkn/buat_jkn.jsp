@@ -1,4 +1,4 @@
-<%@ page import="rsgm_unair.jkn.*" %>
+<%@ page import="rsgm_unair.user_management.*" %>
 <%@ page import="rsgm_unair.shared.*" %>
 <%@ page import="org.json.*" %>
 <%@ page import="java.util.*" %>

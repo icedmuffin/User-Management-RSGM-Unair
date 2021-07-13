@@ -1,4 +1,4 @@
-package rsgm_unair.jkn;
+package rsgm_unair.user_management;
 
 import rsgm_unair.config.DatabaseConfig;
 import rsgm_unair.shared.CouchHelper;
