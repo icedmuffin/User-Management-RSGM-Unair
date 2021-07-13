@@ -55,3 +55,8 @@ emit(doc._id, null);
 }
 }
 ```
+
+command ant all-remove-install
+```
+ant gas
+```
