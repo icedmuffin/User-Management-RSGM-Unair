@@ -2,17 +2,17 @@
 <%@ page import="org.json.*" %>
 <%
 String id = request.getParameter("nama");
-JSONObject pasien = PasienManagement.findPasien(id);
-if(pasien == null){
-	pasien = PasienManagement.createNewPasien();
+JSONObject rekammedik = RekammedikManagement.findRekammedik(id);
+if(rekammedik == null){
+	rekammedik = RekammedikManagement.createNewRekammedik();
 }else{
 	
 	String isConfirm = request.getParameter("is_confirm");
 	if(isConfirm != null && isConfirm.equals("yes")){
-		PasienManagement.removePasien(pasien.getString("_id"));
+		RekammedikManagement.removeRekammedik(rekammedik.getString("_id"));
 %>
 	<script>
-		window.location.href="?act=pasien";
+		window.location.href="?act=rekammedik";
 	</script>
 <%
 		return;
@@ -27,33 +27,38 @@ if(pasien == null){
 				<p style="background-color:red;">Apakah Anda Yakin Ingin Menghapus?</p>
 				
 				<table border="0">
-					<tr>
+                    <tr>
 						<td>Nama</td>
 						<td>:</td>
-						<td><%=pasien.getString("nama")%></td>
+						<td><%=rekammedik.getString("nama")%></td>
 					</tr>
 					<tr>
-						<td>No HP</td>
+						<td>Ktp</td>
 						<td>:</td>
-						<td><%=pasien.getString("no hp")%></td>
+						<td><%=rekammedik.getString("ktp")%></td>
 					</tr>
 					<tr>
-						<td>Jenis Kelamin</td>
+						<td>Tanggal</td>
 						<td>:</td>
-						<td><%=pasien.getString("jenis kelamin")%></td>
+						<td><%=rekammedik.getString("tanggal")%></td>
 					</tr>
 					<tr>
-						<td>Umur</td>
+						<td>Keluhan dan Gejala</td>
 						<td>:</td>
-						<td><%=pasien.getString("umur")%></td>
+						<td><%=rekammedik.getString("keluhangejala")%></td>
+					</tr>
+                    <tr>
+						<td>Diagnosa</td>
+						<td>:</td>
+						<td><%=rekammedik.getString("diagnosa")%></td>
 					</tr>
 					<tr>
-						<td>Keluhan</td>
+						<td>Obat</td>
 						<td>:</td>
-						<td><%=pasien.getString("keluhan")%></td>
+						<td><%=rekammedik.getString("obat")%></td>
 					</tr>
 				</table>
-				<form action="?act=delete_pasien&nama=<%=pasien.getString("nama")%>" method="post">
+				<form action="?act=delete_rekammedik&nama=<%=rekammedik.getString("nama")%>" method="post">
 					<input type="hidden" name="is_confirm" value="yes" />
 					<input type="submit" class="pure-button pure-button-danger" value="hapus" />
 				</form>

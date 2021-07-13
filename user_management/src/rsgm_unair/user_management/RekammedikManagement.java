@@ -9,27 +9,27 @@ import java.util.logging.*;
 import radityopw.couchdbclient.*;
 import java.util.*;
 
-public class PasienManagement{
+public class RekammedikManagement{
 	
 
-	public static JSONObject findPasien(String d) throws Exception{
+	public static JSONObject findRekammedik(String d) throws Exception{
 		
 		CouchdbClient usersClient = CouchHelper.createClient();
 		
-        String id = "pasien:"+d;
+        String id = "rekammedik:"+d;
 
-		JSONObject pasien = usersClient.getDoc(id);
+		JSONObject rekammedik = usersClient.getDoc(id);
 		
 		usersClient = null;
         
-        if(!pasien.has("_id")){
+        if(!rekammedik.has("_id")){
             return null;
         }
 		
-		return pasien;
+		return rekammedik;
 	}
 	
-	public static void removePasien(String nama) throws Exception{
+	public static void removeRekammedik(String nama) throws Exception{
 		CouchdbClient usersClient = CouchHelper.createClient();
 		
 		usersClient.delDoc(nama);
@@ -37,55 +37,64 @@ public class PasienManagement{
 		usersClient = null;
 	}
 	
-	public static Response CreateEditPasien(FormPasien fp) throws Exception{
+	public static Response CreateEditRekammedik(FormRekammedik fp) throws Exception{
 		Response fr = new Response();
 		fr.setKode(Response.ERROR);
 		fr.setPesan("Ada field kosong");
 		
 		if(fp.getNama() != null && !fp.getNama().trim().equals("")){
 
-           	if(fp.getNohp() != null && !fp.getNohp().trim().equals("")){
+           	if(fp.getKtp() != null && !fp.getKtp().trim().equals("")){
 
-                if(fp.getJeniskelamin() != null && !fp.getJeniskelamin().trim().equals("")){
+                if(fp.getTanggal() != null && !fp.getTanggal().trim().equals("")){
  
-			        if(fp.getUmur() != null && !fp.getUmur().trim().equals("")){
-				
-				        if(fp.getKeluhan() != null && !fp.getKeluhan().trim().equals("")){
+			        if(fp.getKeluhangejala() != null && !fp.getKeluhangejala().trim().equals("")){
+
+                        if(fp.getDiagnosa() != null && !fp.getDiagnosa().trim().equals("")){
+
+                            if(fp.getObat() != null && !fp.getObat().trim().equals("")){
+             
+                               
 					
 					CouchdbClient usersClient = CouchHelper.createClient();
                     
-                    String id = "pasien:"+fp.getNama();
+                    String id = "rekammedik:"+fp.getNama();
 					
-					JSONObject pasien = usersClient.getDoc(id);
+					JSONObject rekammedik = usersClient.getDoc(id);
                     
-                    if(!pasien.has("_id")){
-                        pasien = createNewPasien();
+                    if(!rekammedik.has("_id")){
+                        rekammedik = createNewRekammedik();
                     }
                     
-                    pasien.put("nama",fp.getNama());
-                    pasien.put("no hp",fp.getNohp());
-                    pasien.put("jenis kelamin",fp.getJeniskelamin());
-                    pasien.put("umur",fp.getUmur());
-                    pasien.put("keluhan",fp.getKeluhan());
+                    rekammedik.put("nama",fp.getNama());
+                    rekammedik.put("ktp",fp.getKtp());
+                    rekammedik.put("tanggal",fp.getTanggal());
+                    rekammedik.put("keluhangejala",fp.getKeluhangejala());
+                    rekammedik.put("diagnosa",fp.getDiagnosa());
+                    rekammedik.put("obat",fp.getObat());
                     
-                    usersClient.setDoc(id,pasien);				
+                    
+                    
+                    usersClient.setDoc(id,rekammedik);				
 					
 					usersClient = null;
 					
 					fr.setKode(Response.OK);
 					fr.setPesan("Data Telah Disimpan");
 					
-				}
-				
-			}
-			
-		}
+            
         }
+    }
+}
+    }	
+		
+}
+        
         }
 		return fr;
 	}
 	
-	public static Paging getPagingPasien(InputPagingPasien ipp) throws Exception{
+	public static Paging getPagingRekammedik(InputPagingRekammedik ipp) throws Exception{
         
         Paging data = new Paging();
 		
@@ -98,10 +107,10 @@ public class PasienManagement{
         param += "&skip="+ipp.getOffset();
         
         if(ipp.getSearchKey() != null){
-            param += "&key=\"pasien:"+ipp.getSearchKey()+"\"";
+            param += "&key=\"rekammedik:"+ipp.getSearchKey()+"\"";
         }
         
-        JSONObject resultRaw = usersClient.view("pasien","all",param);
+        JSONObject resultRaw = usersClient.view("rekammedik","all",param);
         JSONArray result = resultRaw.getJSONArray("rows");
         
         List<JSONObject> resultData = new ArrayList<JSONObject>();
@@ -140,14 +149,17 @@ public class PasienManagement{
 		return data;
 	}
     
-    public static JSONObject createNewPasien(){	
-        JSONObject pasien = new JSONObject();
-        pasien.put("nama","");
-        pasien.put("no hp","");
-        pasien.put("jenis kelamin","");
-        pasien.put("umur","");
-        pasien.put("keluhan","");
+    public static JSONObject createNewRekammedik(){	
+        JSONObject rekammedik = new JSONObject();
+        rekammedik.put("nama","");
+        rekammedik.put("ktp","");
+        rekammedik.put("tanggal","");
+        rekammedik.put("keluhangejala","");
+        rekammedik.put("diagnosa","");
+        rekammedik.put("obat","");
+ 
+        
 
-        return pasien;
+        return rekammedik;
     }
 }

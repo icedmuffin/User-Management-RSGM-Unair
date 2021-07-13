@@ -7,8 +7,7 @@ import lombok.ToString;
 
 
 @Data public class FormLogin{
-	//sebenarnya ada setter dan getter disini, tapi udah pake project lombok
-	
+
 	private String username;
 	private String password;
 

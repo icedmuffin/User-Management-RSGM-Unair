@@ -2,17 +2,17 @@
 <%@ page import="org.json.*" %>
 <%
 String id = request.getParameter("nama");
-JSONObject pasien = PasienManagement.findPasien(id);
-if(pasien == null){
-	pasien = PasienManagement.createNewPasien();
+JSONObject dokter = DokterManagement.findDokter(id);
+if(dokter == null){
+	dokter = DokterManagement.createNewDokter();
 }else{
 	
 	String isConfirm = request.getParameter("is_confirm");
 	if(isConfirm != null && isConfirm.equals("yes")){
-		PasienManagement.removePasien(pasien.getString("_id"));
+		DokterManagement.removeDokter(dokter.getString("_id"));
 %>
 	<script>
-		window.location.href="?act=pasien";
+		window.location.href="?act=dokter";
 	</script>
 <%
 		return;
@@ -30,30 +30,25 @@ if(pasien == null){
 					<tr>
 						<td>Nama</td>
 						<td>:</td>
-						<td><%=pasien.getString("nama")%></td>
+						<td><%=dokter.getString("nama")%></td>
 					</tr>
 					<tr>
-						<td>No HP</td>
+						<td>Unit</td>
 						<td>:</td>
-						<td><%=pasien.getString("no hp")%></td>
+						<td><%=dokter.getString("unit")%></td>
 					</tr>
 					<tr>
-						<td>Jenis Kelamin</td>
+						<td>Jenis</td>
 						<td>:</td>
-						<td><%=pasien.getString("jenis kelamin")%></td>
+						<td><%=dokter.getString("jenis")%></td>
 					</tr>
 					<tr>
-						<td>Umur</td>
+						<td>Alamat</td>
 						<td>:</td>
-						<td><%=pasien.getString("umur")%></td>
-					</tr>
-					<tr>
-						<td>Keluhan</td>
-						<td>:</td>
-						<td><%=pasien.getString("keluhan")%></td>
+						<td><%=dokter.getString("jadwal")%></td>
 					</tr>
 				</table>
-				<form action="?act=delete_pasien&nama=<%=pasien.getString("nama")%>" method="post">
+				<form action="?act=delete_dokter&nama=<%=dokter.getString("nama")%>" method="post">
 					<input type="hidden" name="is_confirm" value="yes" />
 					<input type="submit" class="pure-button pure-button-danger" value="hapus" />
 				</form>

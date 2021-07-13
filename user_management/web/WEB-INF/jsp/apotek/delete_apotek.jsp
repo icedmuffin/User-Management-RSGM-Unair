@@ -2,17 +2,17 @@
 <%@ page import="org.json.*" %>
 <%
 String id = request.getParameter("nama");
-JSONObject pasien = PasienManagement.findPasien(id);
-if(pasien == null){
-	pasien = PasienManagement.createNewPasien();
+JSONObject apotek = ApotekManagement.findApotek(id);
+if(apotek == null){
+	apotek = ApotekManagement.createNewApotek();
 }else{
 	
 	String isConfirm = request.getParameter("is_confirm");
 	if(isConfirm != null && isConfirm.equals("yes")){
-		PasienManagement.removePasien(pasien.getString("_id"));
+		ApotekManagement.removeApotek(apotek.getString("_id"));
 %>
 	<script>
-		window.location.href="?act=pasien";
+		window.location.href="?act=apotek";
 	</script>
 <%
 		return;
@@ -30,30 +30,30 @@ if(pasien == null){
 					<tr>
 						<td>Nama</td>
 						<td>:</td>
-						<td><%=pasien.getString("nama")%></td>
+						<td><%=apotek.getString("nama")%></td>
 					</tr>
 					<tr>
-						<td>No HP</td>
+						<td>Usia</td>
 						<td>:</td>
-						<td><%=pasien.getString("no hp")%></td>
+						<td><%=apotek.getString("usia")%></td>
+					</tr>
+                    <tr>
+						<td>Tanggal Lahir</td>
+						<td>:</td>
+						<td><%=apotek.getString("tanggal lahir")%></td>
 					</tr>
 					<tr>
-						<td>Jenis Kelamin</td>
+						<td>Alamat</td>
 						<td>:</td>
-						<td><%=pasien.getString("jenis kelamin")%></td>
+						<td><%=apotek.getString("alamat")%></td>
 					</tr>
-					<tr>
-						<td>Umur</td>
+                    <tr>
+						<td>Obat</td>
 						<td>:</td>
-						<td><%=pasien.getString("umur")%></td>
-					</tr>
-					<tr>
-						<td>Keluhan</td>
-						<td>:</td>
-						<td><%=pasien.getString("keluhan")%></td>
+						<td><%=apotek.getString("obat")%></td>
 					</tr>
 				</table>
-				<form action="?act=delete_pasien&nama=<%=pasien.getString("nama")%>" method="post">
+				<form action="?act=delete_apotek&nama=<%=apotek.getString("nama")%>" method="post">
 					<input type="hidden" name="is_confirm" value="yes" />
 					<input type="submit" class="pure-button pure-button-danger" value="hapus" />
 				</form>

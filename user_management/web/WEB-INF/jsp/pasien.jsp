@@ -20,13 +20,12 @@ if(searchKey == null){
 if(action != null && action.equals("add_edit_pasien")){
 	
 	FormPasien fp = new FormPasien();
-	fp.setUsername(request.getParameter("username"));
-	fp.setName(request.getParameter("name"));
-	fp.setSex(request.getParameter("sex"));
-	fp.setAge(request.getParameter("age"));
-	fp.setAddress(request.getParameter("address"));
-	fp.setComplaint(request.getParameter("complaint"));
-	
+	fp.setNama(request.getParameter("nama"));
+	fp.setNohp(request.getParameter("no hp"));
+	fp.setJeniskelamin(request.getParameter("jenis kelamin"));
+	fp.setUmur(request.getParameter("umur"));
+	fp.setKeluhan(request.getParameter("keluhan"));
+
 	resp = PasienManagement.CreateEditPasien(fp);
 	
 }
@@ -38,15 +37,11 @@ if(request.getParameter("offset") != null && !request.getParameter("offset").tri
     ipp.setOffset( Integer.parseInt(request.getParameter("offset")));
 }
 if(searchKey != null && !searchKey.trim().equals("")){
-	ipp.setSearchPasien(searchKey);
+	ipp.setSearchKey(searchKey);
 }
 
 Paging pagePasien = PasienManagement.getPagingPasien(ipp);
 
-String username = request.getParameter("username");
-if(username != null && !username.trim().equals("")){
-	pasien = PasienManagement.findPasien(username);
-}
 
 if(pasien == null){
 	pasien = PasienManagement.createNewPasien();
@@ -55,51 +50,45 @@ if(pasien == null){
 %>
 
 <div class="pure-g">
-	<div class="pure-u-1-3" align="left">
-		<h2>Zaidan Ganteng</h2>
+	<div class="pure-u-1-3" align="center">
+		<h2>Data Pasien</h2>
 		<hr>
 		<% if(resp != null && resp.getKode() == Response.ERROR){ %>
 			<h4 align="center" style="background-color:red;"><%=resp.getPesan()%></h4>
 		<% }else if(resp != null && resp.getKode() == Response.OK){ %>
-			<h4 align="center" style="background-color:blue;"><%=resp.getPesan()%></h4>
+			<h4 align="center" style="background-color:lightgreen;"><%=resp.getPesan()%></h4>
 		<% } %>
 	</div>
 	<div class="pure-u-2-3"></div>
 </div>
+
 <div class="pure-g">
 	<div class="pure-u-1-3" align="left">
 		<form class="pure-form pure-form-aligned" method="post" action="?act=pasien">
 		<input type="hidden" name="action" value="add_edit_pasien" />
 		<fieldset>
 			<div class="pure-control-group">
-				<label for="aligned-name">Username</label>
-				<input type="text" name="username" id="aligned-name" placeholder="Username" value="<%=pasien.getString("username")%>" />
+				<label for="aligned-nama">Nama</label>
+				<input type="text" name="nama" id="aligned-nama" placeholder="Nama" value="<%=pasien.getString("nama")%>" />
 			</div>
 			<div class="pure-control-group">
-				<label for="aligned-name">Name</label>
-				<input type="text" name="name" id="aligned-name" placeholder="Name" value="<%=pasien.getString("name")%>" />
+				<label for="aligned-nohp">No HP</label>
+				<input type="text" name="no hp" id="aligned-no hp" placeholder="No HP" value="<%=pasien.getString("no hp")%>" />
 			</div>
 			<div class="pure-control-group">
-                <label for="multi-state">Sex</label>
-                <select id="multi-state" name="sex">
-                    <option <% if(pasien.getString("sex").equals("Laki-laki")){ %> selected="selected" <% } %>>Laki-laki</option>
-                    <option <% if(pasien.getString("sex").equals("Perempuan")){ %> selected="selected" <% } %>>Perempuan</option>
+                <label for="aligned-jeniskelamin">Jenis Kelamin</label>
+                <input type="text" name="jenis kelamin" id="aligned-jeniskelamin" placeholder="Jenis Kelamin" value="<%=pasien.getString("jenis kelamin")%>" />
                 </select>
             </div>
 			<div class="pure-control-group">
-                <label for="multi-state">Age</label>
-                <input type="text" name="age" id="aligned-name" placeholder="Age" value="<%=pasien.getString("age")%>" />
-            </div>
-			<div class="pure-control-group">
-                <label for="aligned-name">Address</label>
-                <input type="text" name="address" id="aligned-name" placeholder="Address" value="<%=pasien.getString("address")%>" />
-            </div>
-			
-			<div class="pure-control-group">
-				<label for="aligned-name">Complaint</label>
-				<input type="text" name="complaint" id="aligned-name" placeholder="Complaint" value="<%=pasien.getString("complaint")%>" />
+				<label for="aligned-umur">Umur</label>
+				<input type="text" name="umur" id="aligned-umur" placeholder="Umur" value="<%=pasien.getString("umur")%>" />
 			</div>
-			
+			<div class="pure-control-group">
+                <label for="aligned-keluhan">Keluhan</label>
+                <input type="text" name="keluhan" id="aligned-keluhan" placeholder="Keluhan" value="<%=pasien.getString("keluhan")%>" />
+                </select>
+            </div>
 			<div class="pure-controls">
 				
 				<input type="submit" class="pure-button pure-button-primary" value="Simpan">
@@ -111,21 +100,20 @@ if(pasien == null){
 		<p>menampilkan <%=pagePasien.getResultFrom()%> - <%=pagePasien.getResultTo()%> dari total <%=pagePasien.getTotalResults()%></p>
 		<form action="?act=pasien" method="post" class="pure-form">
 			<input type="hidden" name="action" value="cari_pasien" />
-			<input type="text" name="pasien_search_key" class="pure-input-rounded" placeholder="Username" value="<%=searchKey%>" />
+			<input type="text" name="pasien_search_key" class="pure-input-rounded" placeholder="Nama" value="<%=searchKey%>" />
 			<input type="submit" class="pure-button pure-button-primary" value="cari" />
 		</form>
-		<p></p>
+		<p></p>									
 		<table class="pure-table">
 			<thead>
 				<tr>
-					<th>#</th>
-					<th>Username</th>
-					<th>Name</th>
-					<th>Sex</th>
-					<th>Age</th>
-					<th>Address</th>
-					<th>Complaint</th>
-					<th>Action</th>
+					<th>No</th>					
+					<th>Nama</th>
+					<th>No HP</th>
+					<th>Jenis Kelamin</th>
+					<th>Umur</th>
+					<th>Keluhan</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -134,16 +122,15 @@ if(pasien == null){
 				%>
 				<tr>
 					<td><%=(pagePasien.getResultFrom() + i)%></td>
-					<td><%=pagePasien.getResultList().get(i).getString("username")%></td>
-					<td><%=pagePasien.getResultList().get(i).getString("name")%></td>
-					<td><%=pagePasien.getResultList().get(i).getString("sex")%></td>
-					<td><%=pagePasien.getResultList().get(i).getString("age")%></td>
-					<td><%=pagePasien.getResultList().get(i).getString("address")%></td>
-					<td><%=pagePasien.getResultList().get(i).getString("complaint")%></td>
+					<td><%=pagePasien.getResultList().get(i).getString("nama")%></td>
+					<td><%=pagePasien.getResultList().get(i).getString("no hp")%></td>
+					<td><%=pagePasien.getResultList().get(i).getString("jenis kelamin")%></td>
+					<td><%=pagePasien.getResultList().get(i).getString("umur")%></td>
+                    <td><%=pagePasien.getResultList().get(i).getString("keluhan")%></td>
 					<td>
-						<a href="?act=pasien&username=<%=pagePasien.getResultList().get(i).getString("username")%>">Edit</a>
-						|
-						<a href="?act=delete_pasien&username=<%=pagePasien.getResultList().get(i).getString("username")%>">Delete</a>
+						<a href="?act=view_pasien&nama=<%=pagePasien.getResultList().get(i).getString("nama")%>">View</a>
+						<a href="?act=edit_pasien&nama=<%=pagePasien.getResultList().get(i).getString("nama")%>">Edit</a>
+						<a href="?act=delete_pasien&nama=<%=pagePasien.getResultList().get(i).getString("nama")%>">Delete</a>
 					</td>
 				</tr>
 				<% } %>

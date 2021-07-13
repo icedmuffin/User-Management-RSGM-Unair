@@ -522,10 +522,9 @@
 
   </target>
 
-  <target name="fast" depends="remove, all, install">
+  <target name="gas" depends="remove, all, install">
 
   </target>
-
 
   
 

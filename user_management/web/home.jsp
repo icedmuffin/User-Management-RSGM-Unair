@@ -10,6 +10,7 @@ if(isLogin == null || !isLogin.equals("1")){
 	response.sendRedirect("index.jsp");
 	return;
 }
+
 %>
 <!DOCTYPE html>
 <html>
@@ -25,22 +26,32 @@ if(isLogin == null || !isLogin.equals("1")){
 					<a href="home.jsp" class="pure-menu-heading pure-menu-link"><img class="pure-img" width="100" src="img/logo.png"></a>
 					<ul class="pure-menu-list">
 						<li class="pure-menu-item">
-							<a href="?act=user" class="pure-menu-link">user</a>
+							<a href="?act=pendaftaran" class="pure-menu-link">Pendaftaran</a>
 						</li>
 						<li class="pure-menu-item">
-							<a href="?act=pasien" class="pure-menu-link">pasien</a>
+							<a href="?act=apotek" class="pure-menu-link">Apotek</a>
 						</li>
+
+						<li class="pure-menu-item">
+							<a href="?act=pembayaran" class="pure-menu-link">Pembayaran</a>
+						</li>
+
 						<li class="pure-menu-item">
 							<a href="?act=jkn" class="pure-menu-link">jkn</a>
 						</li>
+
+						<li class="pure-menu-item">
+							<a href="?act=rekammedik" class="pure-menu-link">Rekam Medik</a>
+						   </li>
+
 						<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-							<a href="#" class="pure-menu-link">akun</a>
+							<a href="#" class="pure-menu-link">Akun</a>
 							<ul class="pure-menu-children">
 								<li class="pure-menu-item">
-									<a href="?act=info_akun" class="pure-menu-link">info akun</a>
+									<a href="?act=info_akun" class="pure-menu-link">Info Akun</a>
 								</li>
 								<li class="pure-menu-item">
-									<a href="?act=ganti_password" class="pure-menu-link">ganti password</a>
+									<a href="?act=ganti_password" class="pure-menu-link">Ganti Password</a>
 								</li>
 							</ul>
 						</li>
@@ -68,14 +79,89 @@ if(isLogin == null || !isLogin.equals("1")){
 			<jsp:include page="WEB-INF/jsp/ganti_password.jsp"/>
 			<% }else if(act.equals("user")){ %>
 			<jsp:include page="WEB-INF/jsp/user.jsp"/>
-			<% }else if(act.equals("delete_user")){ %>
-			<jsp:include page="WEB-INF/jsp/delete_user.jsp"/>
 			<% }else if(act.equals("pasien")){ %>
 			<jsp:include page="WEB-INF/jsp/pasien.jsp"/>
+			<% }else if(act.equals("delete_user")){ %>
+			<jsp:include page="WEB-INF/jsp/delete_user.jsp"/>
 			<% }else if(act.equals("delete_pasien")){ %>
 			<jsp:include page="WEB-INF/jsp/delete_pasien.jsp"/>
-			<% }else if(act.equals("jkn")){ %>
-			<jsp:include page="WEB-INF/jsp/jkn/jkn.jsp"/>
+			<% }else if(act.equals("edit_pasien")){ %>
+			<jsp:include page="WEB-INF/jsp/edit_pasien.jsp"/>
+			<% }else if(act.equals("view_pasien")){ %>
+			<jsp:include page="WEB-INF/jsp/view_pasien.jsp"/>
+				
+				<% }else if(act.equals("pendaftaran")){ %>
+				<jsp:include page="WEB-INF/jsp/pendaftaran.jsp"/>
+				<% }else if(act.equals("delete_pendaftaran")){ %>
+				<jsp:include page="WEB-INF/jsp/delete_pendaftaran.jsp"/>
+				<% }else if(act.equals("edit_pendaftaran")){ %>
+				<jsp:include page="WEB-INF/jsp/edit_pendaftaran.jsp"/>
+				<% }else if(act.equals("view_pendaftaran")){ %>
+				<jsp:include page="WEB-INF/jsp/view_pendaftaran.jsp"/>
+				<% }else if(act.equals("tambah_pendaftaran")){ %>
+				<jsp:include page="WEB-INF/jsp/tambah_pendaftaran.jsp"/>
+					
+						<% }else if(act.equals("dokter")){ %>
+						<jsp:include page="WEB-INF/jsp/dokter.jsp"/>
+						<% }else if(act.equals("delete_dokter")){ %>
+						<jsp:include page="WEB-INF/jsp/delete_dokter.jsp"/>
+						<% }else if(act.equals("edit_dokter")){ %>
+						<jsp:include page="WEB-INF/jsp/edit_dokter.jsp"/>
+						<% }else if(act.equals("view_dokter")){ %>
+						<jsp:include page="WEB-INF/jsp/view_dokter.jsp"/>
+						<% }else if(act.equals("tambah_dokter")){ %>
+						<jsp:include page="WEB-INF/jsp/tambah_dokter.jsp"/>
+							
+								<% }else if(act.equals("apotek")){ %>
+								<jsp:include page="WEB-INF/jsp/apotek/apotek.jsp"/>
+								<% }else if(act.equals("delete_apotek")){ %>
+								<jsp:include page="WEB-INF/jsp/apotek/delete_apotek.jsp"/>
+								<% }else if(act.equals("edit_apotek")){ %>
+								<jsp:include page="WEB-INF/jsp/apotek/edit_apotek.jsp"/>
+								<% }else if(act.equals("view_apotek")){ %>
+								<jsp:include page="WEB-INF/jsp/apotek/view_apotek.jsp"/>
+								<% }else if(act.equals("tambah_apotek")){ %>
+								<jsp:include page="WEB-INF/jsp/apotek/tambah_apotek.jsp"/>
+
+
+									<% }else if(act.equals("rekammedik")){ %>
+									<jsp:include page="WEB-INF/jsp/rekamMedik/rekammedik.jsp"/>
+									<% }else if(act.equals("delete_rekammedik")){ %>
+									<jsp:include page="WEB-INF/jsp/rekamMedik/delete_rekammedik.jsp"/>
+									<% }else if(act.equals("edit_rekammedik")){ %>
+									<jsp:include page="WEB-INF/jsp/rekamMedik/edit_rekammedik.jsp"/>
+									<% }else if(act.equals("view_rekammedik")){ %>
+									<jsp:include page="WEB-INF/jsp/rekamMedik/view_rekammedik.jsp"/>
+									<% }else if(act.equals("tambah_rekammedik")){ %>
+									<jsp:include page="WEB-INF/jsp/rekamMedik/tambah_rekammedik.jsp"/>
+								
+
+									<% }else if(act.equals("pembayaran")){ %>
+										<jsp:include page="WEB-INF/jsp/pembayaran/pembayaran.jsp"/>
+									<% }else if(act.equals("tambah_pembayaran")){ %>
+										<jsp:include page="WEB-INF/jsp/pembayaran/tambah_pembayaran.jsp"/>	
+									<% }else if(act.equals("view_pembayaran")){ %>
+										<jsp:include page="WEB-INF/jsp/pembayaran/view_pembayaran.jsp"/>
+									<% }else if(act.equals("edit_pembayaran")){ %>
+										<jsp:include page="WEB-INF/jsp/pembayaran/edit_pembayaran.jsp"/>
+									<% }else if(act.equals("delete_pembayaran")){ %>
+										<jsp:include page="WEB-INF/jsp/pembayaran/delete_pembayaran.jsp"/>
+
+
+									<% }else if(act.equals("jkn")){ %>
+									<jsp:include page="WEB-INF/jsp/jkn/menu_jkn.jsp"/>
+									<% }else if(act.equals("buat_jkn")){ %>
+									<jsp:include page="WEB-INF/jsp/jkn/buat_jkn.jsp"/>	
+									<% }else if(act.equals("edit_jkn")){ %>
+									<jsp:include page="WEB-INF/jsp/jkn/edit_jkn.jsp"/>
+									<% }else if(act.equals("delete_jkn")){ %>
+									<jsp:include page="WEB-INF/jsp/jkn/delete_jkn.jsp"/>
+									
+										
+									
+					
+						 
+				 	
 			<% } %>
 			</div>
 		</div>

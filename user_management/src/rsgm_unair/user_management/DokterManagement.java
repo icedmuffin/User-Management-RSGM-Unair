@@ -9,27 +9,27 @@ import java.util.logging.*;
 import radityopw.couchdbclient.*;
 import java.util.*;
 
-public class PasienManagement{
+public class DokterManagement{
 	
 
-	public static JSONObject findPasien(String d) throws Exception{
+	public static JSONObject findDokter(String d) throws Exception{
 		
 		CouchdbClient usersClient = CouchHelper.createClient();
 		
-        String id = "pasien:"+d;
+        String id = "dokter:"+d;
 
-		JSONObject pasien = usersClient.getDoc(id);
+		JSONObject dokter = usersClient.getDoc(id);
 		
 		usersClient = null;
         
-        if(!pasien.has("_id")){
+        if(!dokter.has("_id")){
             return null;
         }
 		
-		return pasien;
+		return dokter;
 	}
 	
-	public static void removePasien(String nama) throws Exception{
+	public static void removeDokter(String nama) throws Exception{
 		CouchdbClient usersClient = CouchHelper.createClient();
 		
 		usersClient.delDoc(nama);
@@ -37,55 +37,57 @@ public class PasienManagement{
 		usersClient = null;
 	}
 	
-	public static Response CreateEditPasien(FormPasien fp) throws Exception{
+	public static Response CreateEditDokter(FormDokter fp) throws Exception{
 		Response fr = new Response();
 		fr.setKode(Response.ERROR);
 		fr.setPesan("Ada field kosong");
 		
 		if(fp.getNama() != null && !fp.getNama().trim().equals("")){
 
-           	if(fp.getNohp() != null && !fp.getNohp().trim().equals("")){
+           	if(fp.getUnit() != null && !fp.getUnit().trim().equals("")){
 
-                if(fp.getJeniskelamin() != null && !fp.getJeniskelamin().trim().equals("")){
+                if(fp.getJenis() != null && !fp.getJenis().trim().equals("")){
  
-			        if(fp.getUmur() != null && !fp.getUmur().trim().equals("")){
+			        if(fp.getJadwal() != null && !fp.getJadwal().trim().equals("")){
+
+                        
 				
-				        if(fp.getKeluhan() != null && !fp.getKeluhan().trim().equals("")){
 					
 					CouchdbClient usersClient = CouchHelper.createClient();
                     
-                    String id = "pasien:"+fp.getNama();
+                    String id = "dokter:"+fp.getNama();
 					
-					JSONObject pasien = usersClient.getDoc(id);
+					JSONObject dokter = usersClient.getDoc(id);
                     
-                    if(!pasien.has("_id")){
-                        pasien = createNewPasien();
+                    if(!dokter.has("_id")){
+                        dokter = createNewDokter();
                     }
                     
-                    pasien.put("nama",fp.getNama());
-                    pasien.put("no hp",fp.getNohp());
-                    pasien.put("jenis kelamin",fp.getJeniskelamin());
-                    pasien.put("umur",fp.getUmur());
-                    pasien.put("keluhan",fp.getKeluhan());
+                    dokter.put("nama",fp.getNama());
+                    dokter.put("unit",fp.getUnit());
+                    dokter.put("jenis",fp.getJenis());
+                    dokter.put("jadwal",fp.getJadwal());
                     
-                    usersClient.setDoc(id,pasien);				
+                    
+                    
+                    usersClient.setDoc(id,dokter);				
 					
 					usersClient = null;
 					
 					fr.setKode(Response.OK);
 					fr.setPesan("Data Telah Disimpan");
 					
-				}
-				
-			}
+			
+        }
+    }
 			
 		}
-        }
+        
         }
 		return fr;
 	}
 	
-	public static Paging getPagingPasien(InputPagingPasien ipp) throws Exception{
+	public static Paging getPagingDokter(InputPagingDokter ipp) throws Exception{
         
         Paging data = new Paging();
 		
@@ -98,10 +100,10 @@ public class PasienManagement{
         param += "&skip="+ipp.getOffset();
         
         if(ipp.getSearchKey() != null){
-            param += "&key=\"pasien:"+ipp.getSearchKey()+"\"";
+            param += "&key=\"dokter:"+ipp.getSearchKey()+"\"";
         }
         
-        JSONObject resultRaw = usersClient.view("pasien","all",param);
+        JSONObject resultRaw = usersClient.view("dokter","all",param);
         JSONArray result = resultRaw.getJSONArray("rows");
         
         List<JSONObject> resultData = new ArrayList<JSONObject>();
@@ -140,14 +142,15 @@ public class PasienManagement{
 		return data;
 	}
     
-    public static JSONObject createNewPasien(){	
-        JSONObject pasien = new JSONObject();
-        pasien.put("nama","");
-        pasien.put("no hp","");
-        pasien.put("jenis kelamin","");
-        pasien.put("umur","");
-        pasien.put("keluhan","");
+    public static JSONObject createNewDokter(){	
+        JSONObject dokter = new JSONObject();
+        dokter.put("nama","");
+        dokter.put("unit","");
+        dokter.put("jenis","");
+        dokter.put("jadwal","");
+       
+        
 
-        return pasien;
+        return dokter;
     }
 }

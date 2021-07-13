@@ -6,11 +6,13 @@ import lombok.Data;
 import lombok.ToString;
 
 
-@Data public class FormPasien{
+@Data public class FormApotek{
 
 	private String nama;
-	private String nohp;
-	private String jeniskelamin;
-	private String umur;
-	private String keluhan;
+	private String usia;
+	private String tanggallahir;
+	private String alamat;
+    private String obat;
+	
+
 }

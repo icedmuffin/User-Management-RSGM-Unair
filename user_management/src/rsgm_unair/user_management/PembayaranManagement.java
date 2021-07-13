@@ -9,66 +9,68 @@ import java.util.logging.*;
 import radityopw.couchdbclient.*;
 import java.util.*;
 
-public class PasienManagement{
+public class PembayaranManagement{
 	
 
-	public static JSONObject findPasien(String d) throws Exception{
+	public static JSONObject findPembayaran(String d) throws Exception{
 		
 		CouchdbClient usersClient = CouchHelper.createClient();
 		
-        String id = "pasien:"+d;
+        String id = "pembayaran:"+d;
 
-		JSONObject pasien = usersClient.getDoc(id);
+		JSONObject pembayaran = usersClient.getDoc(id);
 		
 		usersClient = null;
         
-        if(!pasien.has("_id")){
+        if(!pembayaran.has("_id")){
             return null;
         }
 		
-		return pasien;
+		return pembayaran;
 	}
 	
-	public static void removePasien(String nama) throws Exception{
+	public static void removePembayaran(String noPembayaran) throws Exception{
 		CouchdbClient usersClient = CouchHelper.createClient();
 		
-		usersClient.delDoc(nama);
+		usersClient.delDoc(noPembayaran);
 		
 		usersClient = null;
 	}
 	
-	public static Response CreateEditPasien(FormPasien fp) throws Exception{
+	public static Response CreateEditPembayaran(FormPembayaran fp) throws Exception{
 		Response fr = new Response();
 		fr.setKode(Response.ERROR);
 		fr.setPesan("Ada field kosong");
 		
-		if(fp.getNama() != null && !fp.getNama().trim().equals("")){
+		if(fp.getNoPembayaran() != null && !fp.getNoPembayaran().trim().equals("")){
 
-           	if(fp.getNohp() != null && !fp.getNohp().trim().equals("")){
+           	if(fp.getKtp() != null && !fp.getKtp().trim().equals("")){
 
-                if(fp.getJeniskelamin() != null && !fp.getJeniskelamin().trim().equals("")){
+                if(fp.getTanggal() != null && !fp.getTanggal().trim().equals("")){
  
-			        if(fp.getUmur() != null && !fp.getUmur().trim().equals("")){
+			        if(fp.getKategori() != null && !fp.getKategori().trim().equals("")){
+
+                        if(fp.getNominal() != null && !fp.getNominal().trim().equals("")){
 				
-				        if(fp.getKeluhan() != null && !fp.getKeluhan().trim().equals("")){
 					
 					CouchdbClient usersClient = CouchHelper.createClient();
                     
-                    String id = "pasien:"+fp.getNama();
+                    String id = "pembayaran:"+fp.getNoPembayaran();
 					
-					JSONObject pasien = usersClient.getDoc(id);
+					JSONObject pembayaran = usersClient.getDoc(id);
                     
-                    if(!pasien.has("_id")){
-                        pasien = createNewPasien();
+                    if(!pembayaran.has("_id")){
+                        pembayaran = createNewPembayaran();
                     }
                     
-                    pasien.put("nama",fp.getNama());
-                    pasien.put("no hp",fp.getNohp());
-                    pasien.put("jenis kelamin",fp.getJeniskelamin());
-                    pasien.put("umur",fp.getUmur());
-                    pasien.put("keluhan",fp.getKeluhan());
+                    pembayaran.put("noPembayaran",fp.getNoPembayaran());
+                    pembayaran.put("ktp",fp.getKtp());
+                    pembayaran.put("tanggal",fp.getTanggal());
+                    pembayaran.put("kategori",fp.getKategori());
+                    pembayaran.put("nominal",fp.getNominal());
                     
-                    usersClient.setDoc(id,pasien);				
+                    
+                    usersClient.setDoc(id,pembayaran);				
 					
 					usersClient = null;
 					
@@ -76,16 +78,17 @@ public class PasienManagement{
 					fr.setPesan("Data Telah Disimpan");
 					
 				}
+            }
 				
-			}
+                }	
 			
 		}
-        }
+        
         }
 		return fr;
 	}
 	
-	public static Paging getPagingPasien(InputPagingPasien ipp) throws Exception{
+	public static Paging getPagingPembayaran(InputPagingPembayaran ipp) throws Exception{
         
         Paging data = new Paging();
 		
@@ -98,10 +101,10 @@ public class PasienManagement{
         param += "&skip="+ipp.getOffset();
         
         if(ipp.getSearchKey() != null){
-            param += "&key=\"pasien:"+ipp.getSearchKey()+"\"";
+            param += "&key=\"pembayaran:"+ipp.getSearchKey()+"\"";
         }
         
-        JSONObject resultRaw = usersClient.view("pasien","all",param);
+        JSONObject resultRaw = usersClient.view("pembayaran","all",param);
         JSONArray result = resultRaw.getJSONArray("rows");
         
         List<JSONObject> resultData = new ArrayList<JSONObject>();
@@ -140,14 +143,15 @@ public class PasienManagement{
 		return data;
 	}
     
-    public static JSONObject createNewPasien(){	
-        JSONObject pasien = new JSONObject();
-        pasien.put("nama","");
-        pasien.put("no hp","");
-        pasien.put("jenis kelamin","");
-        pasien.put("umur","");
-        pasien.put("keluhan","");
+    public static JSONObject createNewPembayaran(){	
+        JSONObject pembayaran = new JSONObject();
+        pembayaran.put("noPembayaran","");
+        pembayaran.put("ktp","");
+        pembayaran.put("tanggal","");
+        pembayaran.put("kategori","");
+        pembayaran.put("nominal","");
+        
 
-        return pasien;
+        return pembayaran;
     }
 }

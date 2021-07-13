@@ -6,11 +6,11 @@ import lombok.Data;
 import lombok.ToString;
 
 
-@Data public class FormPasien{
+@Data public class FormDokter{
 
 	private String nama;
-	private String nohp;
-	private String jeniskelamin;
-	private String umur;
-	private String keluhan;
+	private String unit;
+	private String jenis;
+	private String jadwal;
+
 }

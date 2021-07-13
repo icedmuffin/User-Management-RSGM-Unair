@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.Data;
 import lombok.ToString;
 
-@Data public class InputPagingPasien{
+@Data public class InputPagingRekammedik{
 
 	private int perPage = 10;
 	private int offset = 0;

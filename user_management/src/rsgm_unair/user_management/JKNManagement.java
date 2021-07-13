@@ -162,6 +162,6 @@ public class JKNManagement{
 		jkn.put("faskesTingkatI","");
 			
         return jkn;
-    }	
+    }
 	
 }
