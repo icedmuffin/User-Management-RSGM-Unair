@@ -64,24 +64,8 @@ if(pembayaran == null){
 
 <div>
     <style scoped="">
-        .button-success {
-            background: rgb(28, 184, 65);
-            /* this is a green */
-        }
 
-        .button-error {
-            background: rgb(202, 60, 60);
-            /* this is a maroon */
-        }
 
-        .button-warning {
-            background: rgb(223, 117, 20);
-            /* this is an orange */
-        }
-        .button-secondary {
-            background: rgb(66, 184, 221);
-            /* this is a light blue */
-        }
     </style>
 </div>
 
@@ -89,9 +73,14 @@ if(pembayaran == null){
 		<p>menampilkan <%=pagePembayaran.getResultFrom()%> - <%=pagePembayaran.getResultTo()%> dari total <%=pagePembayaran.getTotalResults()%></p>
 		<form action="?act=pembayaran" method="post" class="pure-form">
 			<input type="hidden" name="action" value="cari_pembayaran" />
-			<input type="text" name="pembayaran_search_key" class="pure-input-rounded" placeholder="NoPembayaran" value="<%=searchKey%>" />
+			<input type="text" name="pembayaran_search_key" class="" placeholder="NoPembayaran" value="<%=searchKey%>" />
 			<input type="submit" class="pure-button pure-button-primary" value="cari" />
 		</form>
+		<br>
+		<div>
+			<a href="?act=tambah_pembayaran"class=" pure-button" >Masukan Pembayaran baru</a> 
+		</div>
+		<br>
 		<p></p>									
 		<table class="pure-table">
 			<thead>
@@ -117,20 +106,18 @@ if(pembayaran == null){
 					<td><%=pagePembayaran.getResultList().get(i).getString("kategori")%></td>
                     <td><%=pagePembayaran.getResultList().get(i).getString("nominal")%></td>
 					<td>
-						<a class="button-secondary pure-button" href="?act=view_pembayaran&noPembayaran=<%=pagePembayaran.getResultList().get(i).getString("noPembayaran")%>">View</a>
+						<a class="pure-button-primary pure-button" href="?act=view_pembayaran&noPembayaran=<%=pagePembayaran.getResultList().get(i).getString("noPembayaran")%>">View</a>
 						|
-						<a class="button-warning pure-button" href="?act=edit_pembayaran&noPembayaran=<%=pagePembayaran.getResultList().get(i).getString("noPembayaran")%>">Edit</a>
+						<a class="pure-button-primary pure-button" href="?act=edit_pembayaran&noPembayaran=<%=pagePembayaran.getResultList().get(i).getString("noPembayaran")%>">Edit</a>
 						|
-						<a class="button-error pure-button" href="?act=delete_pembayaran&noPembayaran=<%=pagePembayaran.getResultList().get(i).getString("noPembayaran")%>">Delete</a>
+						<a class="pure-button-primary pure-button" href="?act=delete_pembayaran&noPembayaran=<%=pagePembayaran.getResultList().get(i).getString("noPembayaran")%>">Delete</a>
 					</td>
 				</tr>
 				<% } %>
 			</tbody>
 		</table>
 	
-		<div>
-			<a href="?act=tambah_pembayaran"class="button-success pure-button" >Masukan Pembayaran baru</a> 
-		</div>
+		
 	</div>
 	
 </div>

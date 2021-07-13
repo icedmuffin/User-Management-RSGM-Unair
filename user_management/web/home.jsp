@@ -91,15 +91,15 @@ if(isLogin == null || !isLogin.equals("1")){
 			<jsp:include page="WEB-INF/jsp/view_pasien.jsp"/>
 				
 				<% }else if(act.equals("pendaftaran")){ %>
-				<jsp:include page="WEB-INF/jsp/pendaftaran.jsp"/>
+				<jsp:include page="WEB-INF/jsp/pendaftaran/pendaftaran.jsp"/>
 				<% }else if(act.equals("delete_pendaftaran")){ %>
-				<jsp:include page="WEB-INF/jsp/delete_pendaftaran.jsp"/>
+				<jsp:include page="WEB-INF/jsp/pendaftaran/delete_pendaftaran.jsp"/>
 				<% }else if(act.equals("edit_pendaftaran")){ %>
-				<jsp:include page="WEB-INF/jsp/edit_pendaftaran.jsp"/>
+				<jsp:include page="WEB-INF/jsp/pendaftaran/edit_pendaftaran.jsp"/>
 				<% }else if(act.equals("view_pendaftaran")){ %>
-				<jsp:include page="WEB-INF/jsp/view_pendaftaran.jsp"/>
+				<jsp:include page="WEB-INF/jsp/pendaftaran/view_pendaftaran.jsp"/>
 				<% }else if(act.equals("tambah_pendaftaran")){ %>
-				<jsp:include page="WEB-INF/jsp/tambah_pendaftaran.jsp"/>
+				<jsp:include page="WEB-INF/jsp/pendaftaran/tambah_pendaftaran.jsp"/>
 					
 						<% }else if(act.equals("dokter")){ %>
 						<jsp:include page="WEB-INF/jsp/dokter.jsp"/>

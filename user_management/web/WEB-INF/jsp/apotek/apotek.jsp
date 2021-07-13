@@ -63,24 +63,7 @@ if(apotek == null){
 
 <div>
     <style scoped="">
-        .button-success {
-            background: rgb(28, 184, 65);
-            /* this is a green */
-        }
 
-        .button-error {
-            background: rgb(202, 60, 60);
-            /* this is a maroon */
-        }
-
-        .button-warning {
-            background: rgb(223, 117, 20);
-            /* this is an orange */
-        }
-        .button-secondary {
-            background: rgb(66, 184, 221);
-            /* this is a light blue */
-        }
     </style>
 </div>
 
@@ -88,9 +71,16 @@ if(apotek == null){
 		<p>menampilkan <%=pageApotek.getResultFrom()%> - <%=pageApotek.getResultTo()%> dari total <%=pageApotek.getTotalResults()%></p>
 		<form action="?act=apotek" method="post" class="pure-form">
 			<input type="hidden" name="action" value="cari_apotek" />
-			<input type="text" name="apotek_search_key" class="pure-input-rounded" placeholder="Nama" value="<%=searchKey%>" />
+			<input type="text" name="apotek_search_key" class="" placeholder="Nama" value="<%=searchKey%>" />
 			<input type="submit" class="pure-button pure-button-primary" value="cari" />
 		</form>
+		<br>
+		<div>
+			<a href="?act=tambah_apotek"class=" pure-button" >Tambah Obat</a> 
+		</div>
+	</div>
+		<br>
+
 		<p></p>									
 		<table class="pure-table">
 			<thead>
@@ -116,20 +106,17 @@ if(apotek == null){
 					<td><%=pageApotek.getResultList().get(i).getString("alamat")%></td>
                     <td><%=pageApotek.getResultList().get(i).getString("obat")%></td>
 					<td>
-						<a class="button-secondary pure-button" href="?act=view_apotek&nama=<%=pageApotek.getResultList().get(i).getString("nama")%>">View</a>
+						<a class="pure-button-primary pure-button" href="?act=view_apotek&nama=<%=pageApotek.getResultList().get(i).getString("nama")%>">View</a>
 						|
-						<a class="button-warning pure-button" href="?act=edit_apotek&nama=<%=pageApotek.getResultList().get(i).getString("nama")%>">Edit</a>
+						<a class="pure-button-primary pure-button" href="?act=edit_apotek&nama=<%=pageApotek.getResultList().get(i).getString("nama")%>">Edit</a>
 						|
-						<a class="button-error pure-button" href="?act=delete_apotek&nama=<%=pageApotek.getResultList().get(i).getString("nama")%>">Delete</a>
+						<a class="pure-button-primary pure-button" href="?act=delete_apotek&nama=<%=pageApotek.getResultList().get(i).getString("nama")%>">Delete</a>
 					</td>
 				</tr>
 				<% } %>
 			</tbody>
 		</table>
 	
-		<div>
-			<a href="?act=tambah_apotek"class="button-success pure-button" >Tambah Obat</a> 
-		</div>
-	</div>
+
 	
 </div>

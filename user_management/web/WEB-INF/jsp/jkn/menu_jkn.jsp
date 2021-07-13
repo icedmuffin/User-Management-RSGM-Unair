@@ -66,18 +66,19 @@ if(nik != null && !nik.trim().equals("")){
 	</div>
 	<div class="pure-u-1-1"></div>
 	<div class="pure-u-1-1" align="center">
-		<td>
-		<a href="?act=buat_jkn">
-		<button>Buat data pasien baru</button>
-		</a>
-		</td>
+
 		<p>Menampilkan <%=pageJKN.getResultFrom()%> - <%=pageJKN.getResultTo()%> dari total <%=pageJKN.getTotalResults()%> data pasien Jaminan Kesehatan Nasional</p>
 		<form action="?act=jkn" method="post" class="pure-form">
 			<input type="hidden" name="action" value="cari_jkn" />
-			<input type="text" name="jkn_search_key" class="pure-input-rounded" placeholder="NIK" value="<%=searchKey%>" />
+			<input type="text" name="jkn_search_key" class="" placeholder="NIK" value="<%=searchKey%>" />
 			<input type="submit" class="pure-button pure-button-primary" value="Cari" />
 		</form>
-		<p></p>
+		<br>
+		<div>
+			<a href="?act=buat_jkn"class=" pure-button" >Buat data pasien baru</a> 
+		</div>
+		<br>
+
 		<table class="pure-table">
 			<thead>
 				<tr>
@@ -106,9 +107,9 @@ if(nik != null && !nik.trim().equals("")){
 					<td><%=pageJKN.getResultList().get(i).getString("email")%></td>
 					<td><%=pageJKN.getResultList().get(i).getString("faskesTingkatI")%></td>
 					<td>
-						<a href="?act=edit_jkn&nik=<%=pageJKN.getResultList().get(i).getString("nik")%>">Edit</a>
+						<a class="pure-button-primary pure-button" href="?act=edit_jkn&nik=<%=pageJKN.getResultList().get(i).getString("nik")%>">Edit</a>
 						|
-						<a href="?act=delete_jkn&nik=<%=pageJKN.getResultList().get(i).getString("nik")%>">Delete</a>
+						<a class="pure-button-primary pure-button" href="?act=delete_jkn&nik=<%=pageJKN.getResultList().get(i).getString("nik")%>">Delete</a>
 					</td>
 				</tr>
 				<% } %>
@@ -117,11 +118,11 @@ if(nik != null && !nik.trim().equals("")){
 		
 		<p>
 			<% if(pageJKN.isHasPrevious()){ %>
-			<a href="?act=jkn&offset=<%=pageJKN.getPreviousOffset()%>"> Previous </a>
+			<a  href="?act=jkn&offset=<%=pageJKN.getPreviousOffset()%>"> Previous </a>
 			<% } %>
 			&nbsp;&nbsp;&nbsp; 
 			<% if(pageJKN.isHasNext()){ %>
-			<a href="?act=jkn&offset=<%=pageJKN.getNextOffset()%>"> Next </a>
+			<a  href="?act=jkn&offset=<%=pageJKN.getNextOffset()%>"> Next </a>
 			<% } %>
 		</p>
 	</div>

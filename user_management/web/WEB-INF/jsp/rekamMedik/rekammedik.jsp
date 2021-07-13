@@ -65,24 +65,7 @@ if(rekammedik == null){
 
 <div>
     <style scoped="">
-        .button-success {
-            background: rgb(28, 184, 65);
-            /* this is a green */
-        }
 
-        .button-error {
-            background: rgb(202, 60, 60);
-            /* this is a maroon */
-        }
-
-        .button-warning {
-            background: rgb(223, 117, 20);
-            /* this is an orange */
-        }
-        .button-secondary {
-            background: rgb(66, 184, 221);
-            /* this is a light blue */
-        }
     </style>
 </div>
 
@@ -90,10 +73,17 @@ if(rekammedik == null){
 		<p>menampilkan <%=pageRekammedik.getResultFrom()%> - <%=pageRekammedik.getResultTo()%> dari total <%=pageRekammedik.getTotalResults()%></p>
 		<form action="?act=rekammedik" method="post" class="pure-form">
 			<input type="hidden" name="action" value="cari_rekammedik" />
-			<input type="text" name="rekammedik_search_key" class="pure-input-rounded" placeholder="Nama" value="<%=searchKey%>" />
+			<input type="text" name="rekammedik_search_key" class="" placeholder="Nama" value="<%=searchKey%>" />
 			<input type="submit" class="pure-button pure-button-primary" value="cari" />
 		</form>
-		<p></p>									
+		<br>
+		<div>
+			<a href="?act=tambah_rekammedik"class="pure-button" >Tambah Rekam Medis </a> 
+		</div>
+
+		<br>
+
+							
 		<table class="pure-table">
 			<thead>
 				<tr>
@@ -122,18 +112,16 @@ if(rekammedik == null){
 					<td><%=pageRekammedik.getResultList().get(i).getString("obat")%></td>
 					
 					<td>
-						<a class="button-secondary pure-button" href="?act=view_rekammedik&nama=<%=pageRekammedik.getResultList().get(i).getString("nama")%>">View</a>
-						<a class="button-warning pure-button" href="?act=edit_rekammedik&nama=<%=pageRekammedik.getResultList().get(i).getString("nama")%>">Edit</a>
-						<a class="button-error pure-button" href="?act=delete_rekammedik&nama=<%=pageRekammedik.getResultList().get(i).getString("nama")%>">Delete</a>
+						<a class="pure-button-primary pure-button" href="?act=view_rekammedik&nama=<%=pageRekammedik.getResultList().get(i).getString("nama")%>">View</a>
+						<a class="pure-button-primary pure-button" href="?act=edit_rekammedik&nama=<%=pageRekammedik.getResultList().get(i).getString("nama")%>">Edit</a>
+						<a class="pure-button-primary pure-button" href="?act=delete_rekammedik&nama=<%=pageRekammedik.getResultList().get(i).getString("nama")%>">Delete</a>
 					</td>
 				</tr>
 				<% } %>
 			</tbody>
 		</table>
 	
-		<div>
-			<a href="?act=tambah_rekammedik"class="button-success pure-button" >Tambah Rekam Medis </a> 
-		</div>
+
 	</div>
 	
 </div>
