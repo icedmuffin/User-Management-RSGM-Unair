@@ -50,7 +50,7 @@ if(pendaftaran == null){
 
 
 	
-<div> <h2 align="center">Daftar Pasien RSGM UNAIR </h2></div>
+<div> <h2 align="center">Daftar Pasien</h2></div>
 <% if(resp != null && resp.getKode() == Response.ERROR){ %>
 	<h4 align="center" style="background-color:red;"><%=resp.getPesan()%></h4>
 <% }else if(resp != null && resp.getKode() == Response.OK){ %>

@@ -52,7 +52,7 @@ if(pembayaran == null){
 
 
 	
-<div> <h2 align="center">Modul Pembayaran RSGM UNAIR </h2></div>
+<div> <h2 align="center">Pembayaran</h2></div>
 <% if(resp != null && resp.getKode() == Response.ERROR){ %>
 	<h4 align="center" style="background-color:red;"><%=resp.getPesan()%></h4>
 <% }else if(resp != null && resp.getKode() == Response.OK){ %>
