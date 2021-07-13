@@ -16,6 +16,21 @@ if(searchKey == null){
 	searchKey = "";
 }
 
+if(action != null && action.equals("add_edit_jkn")){
+	
+	FormJKN fj = new FormJKN();
+	fj.setNik(request.getParameter("nik"));
+	fj.setNama(request.getParameter("nama"));
+	fj.setTtl(request.getParameter("ttl"));
+	fj.setAlamat(request.getParameter("alamat"));
+	fj.setNoHP(request.getParameter("noHP"));
+	fj.setEmail(request.getParameter("email"));
+	fj.setFaskesTingkatI(request.getParameter("faskesTingkatI"));
+	
+	resp = JKNManagement.CreateEditJKN(fj);
+	
+}
+
 InputPagingJKN ipj = new InputPagingJKN();
 ipj.setPerPage(10);
 
@@ -24,6 +39,10 @@ if(request.getParameter("offset") != null && !request.getParameter("offset").tri
 }
 if(searchKey != null && !searchKey.trim().equals("")){
 	ipj.setSearchJKN(searchKey);
+}
+
+if(jkn == null){
+	jkn = JKNManagement.createNewJKN();
 }
 
 Paging pageJKN = JKNManagement.getPagingJKN(ipj);

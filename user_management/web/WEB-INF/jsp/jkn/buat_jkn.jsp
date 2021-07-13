@@ -8,6 +8,14 @@ String action = request.getParameter("action");
 Response resp = null;
 JSONObject jkn = null;
 
+if(action != null && action.equals("cari_jkn")){
+	session.setAttribute("jkn_search_key",request.getParameter("jkn_search_key"));
+}
+String searchKey = (String) session.getAttribute("jkn_search_key");
+if(searchKey == null){
+	searchKey = "";
+}
+
 if(action != null && action.equals("add_edit_jkn")){
 	
 	FormJKN fj = new FormJKN();
@@ -23,8 +31,25 @@ if(action != null && action.equals("add_edit_jkn")){
 	
 }
 
+InputPagingJKN ipj = new InputPagingJKN();
+ipj.setPerPage(10);
+
+if(request.getParameter("offset") != null && !request.getParameter("offset").trim().equals("")){
+    ipj.setOffset( Integer.parseInt(request.getParameter("offset")));
+}
+if(searchKey != null && !searchKey.trim().equals("")){
+	ipj.setSearchJKN(searchKey);
+}
+
 if(jkn == null){
 	jkn = JKNManagement.createNewJKN();
+}
+
+Paging pageJKN = JKNManagement.getPagingJKN(ipj);
+
+String nik = request.getParameter("nik");
+if(nik != null && !nik.trim().equals("")){
+	jkn = JKNManagement.findJKN(nik);
 }
 
 %>
