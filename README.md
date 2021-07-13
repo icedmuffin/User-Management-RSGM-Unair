@@ -35,3 +35,23 @@ Modul JKN diperbarui
 
 10 Juli 2021
 Modul JKN selesai
+
+13 Juli 2021
+all modul - selesai
+semua fungsi dasar berhasil dijalankan
+
+dokumen view name - apache coachDB
+```
+- modul Pendaftaran --> pendaftaran
+- modul Pembayaran --> pembayaran
+- modul Rekam Medik --> rekammedik
+- modul JKN --> jkn
+```
+script map function
+```
+function (doc) {
+if(doc._id.startsWith("[blank]:")){
+emit(doc._id, null);
+}
+}
+```
