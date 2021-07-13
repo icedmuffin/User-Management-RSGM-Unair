@@ -75,17 +75,10 @@ if(pembayaran == null){
                 <input type="datetime" name="tanggal" id="aligned-tanggal" placeholder="tanggal" value="<%=pembayaran.getString("tanggal")%>" />
                 </select>
             </div>
-
-            <div class="select">
-
-                <label for="cars">Kategori</label>
-                <select name="kategori" id="aligned-kategori">
-                <option value="reguler">reguler</option>
-                <option value="asuransi">asuransi</option>
-                </select>
-    
-            </div>
-
+			<div class="pure-control-group">
+				<label for="aligned-kategori">Kategori</label>
+				<input type="text" name="kategori" id="aligned-kategori" placeholder="Kategori" value="<%=pembayaran.getString("kategori")%>" />
+			</div>
             <div class="pure-control-group">
 				<label for="aligned-nominal">Nominal</label>
 				<input type="text" name="nominal" id="aligned-nominal" placeholder="Nominal" value="<%=pembayaran.getString("nominal")%>" />

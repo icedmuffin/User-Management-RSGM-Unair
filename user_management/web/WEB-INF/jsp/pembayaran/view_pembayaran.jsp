@@ -1,8 +1,8 @@
 <%@ page import="rsgm_unair.user_management.*" %>
 <%@ page import="org.json.*" %>
 <%
-String nama = request.getParameter("nama");
-JSONObject apotek = PembayaranManagement.findPembayaran(nama);
+String noPembayaran = request.getParameter("noPembayaran");
+JSONObject pembayaran = PembayaranManagement.findPembayaran(noPembayaran);
 %>
 
 		<div class="pure-g">
@@ -15,27 +15,27 @@ JSONObject apotek = PembayaranManagement.findPembayaran(nama);
 					<tr>
 						<td>Nama</td>
 						<td>:</td>
-						<td><%=apotek.getString("nama")%></td>
+						<td><%=pembayaran.getString("noPembayaran")%></td>
 					</tr>
 					<tr>
-						<td>Usia</td>
+						<td>ktp</td>
 						<td>:</td>
-						<td><%=apotek.getString("usia")%></td>
+						<td><%=pembayaran.getString("ktp")%></td>
 					</tr>
                     <tr>
-						<td>Tanggal Lahir</td>
+						<td>tanggal</td>
 						<td>:</td>
-						<td><%=apotek.getString("tanggal lahir")%></td>
+						<td><%=pembayaran.getString("tanggal")%></td>
 					</tr>
 					<tr>
-						<td>Alamat</td>
+						<td>kategori</td>
 						<td>:</td>
-						<td><%=apotek.getString("alamat")%></td>
+						<td><%=pembayaran.getString("kategori")%></td>
 					</tr>
                     <tr>
-						<td>Obat</td>
+						<td>nominal</td>
 						<td>:</td>
-						<td><%=apotek.getString("obat")%></td>
+						<td><%=pembayaran.getString("nominal")%></td>
 					</tr>
 				</table>
 			</div>

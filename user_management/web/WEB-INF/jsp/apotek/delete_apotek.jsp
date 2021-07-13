@@ -1,7 +1,7 @@
 <%@ page import="rsgm_unair.user_management.*" %>
 <%@ page import="org.json.*" %>
 <%
-String id = request.getParameter("nama");
+String id = request.getParameter("kodeObat");
 JSONObject apotek = ApotekManagement.findApotek(id);
 if(apotek == null){
 	apotek = ApotekManagement.createNewApotek();
@@ -30,30 +30,26 @@ if(apotek == null){
 					<tr>
 						<td>Nama</td>
 						<td>:</td>
-						<td><%=apotek.getString("nama")%></td>
+						<td><%=apotek.getString("kodeObat")%></td>
 					</tr>
 					<tr>
 						<td>Usia</td>
 						<td>:</td>
-						<td><%=apotek.getString("usia")%></td>
+						<td><%=apotek.getString("namaObat")%></td>
 					</tr>
                     <tr>
 						<td>Tanggal Lahir</td>
 						<td>:</td>
-						<td><%=apotek.getString("tanggal lahir")%></td>
+						<td><%=apotek.getString("harga")%></td>
 					</tr>
 					<tr>
 						<td>Alamat</td>
 						<td>:</td>
-						<td><%=apotek.getString("alamat")%></td>
+						<td><%=apotek.getString("stok")%></td>
 					</tr>
-                    <tr>
-						<td>Obat</td>
-						<td>:</td>
-						<td><%=apotek.getString("obat")%></td>
-					</tr>
+                    
 				</table>
-				<form action="?act=delete_apotek&nama=<%=apotek.getString("nama")%>" method="post">
+				<form action="?act=delete_apotek&kodeObat=<%=apotek.getString("kodeObat")%>" method="post">
 					<input type="hidden" name="is_confirm" value="yes" />
 					<input type="submit" class="pure-button pure-button-danger" value="hapus" />
 				</form>

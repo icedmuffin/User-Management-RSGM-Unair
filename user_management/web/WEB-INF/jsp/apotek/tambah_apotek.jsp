@@ -20,11 +20,11 @@ if(searchKey == null){
 if(action != null && action.equals("add_edit_apotek")){
 	
 	FormApotek fp = new FormApotek();
-	fp.setNama(request.getParameter("nama"));
-	fp.setUsia(request.getParameter("usia"));
-	fp.setTanggallahir(request.getParameter("tanggal lahir"));
-	fp.setAlamat(request.getParameter("alamat"));
-    fp.setObat(request.getParameter("obat"));
+	fp.setKodeObat(request.getParameter("kodeObat"));
+	fp.setNamaObat(request.getParameter("namaObat"));
+	fp.setHarga(request.getParameter("harga"));
+	fp.setStok(request.getParameter("stok"));
+
 
 	resp = ApotekManagement.CreateEditApotek(fp);
 	
@@ -63,26 +63,23 @@ if(apotek == null){
 		<input type="hidden" name="action" value="add_edit_apotek" />
 		<fieldset>
 			<div class="pure-control-group">
-				<label for="aligned-nama">Nama</label>
-				<input type="text" name="nama" id="aligned-nama" placeholder="Nama" value="<%=apotek.getString("nama")%>" />
+				<label for="aligned-kodeObat">KodeObat</label>
+				<input type="text" name="kodeObat" id="aligned-kodeObat" placeholder="KodeObat" value="<%=apotek.getString("kodeObat")%>" />
 			</div>
 			<div class="pure-control-group">
-				<label for="aligned-usia">Usia</label>
-				<input type="number" name="usia" id="aligned-usia" placeholder="usia" value="<%=apotek.getString("usia")%>" />
+				<label for="aligned-namaObat">NamaObat</label>
+				<input type="text" name="namaObat" id="aligned-namaObat" placeholder="namaObat" value="<%=apotek.getString("namaObat")%>" />
 			</div>
 			<div class="pure-control-group">
-                <label for="aligned-tanggallahir">Tanggal Lahir</label>
-                <input type="datetime" name="tanggal lahir" id="aligned-tanggallahir" placeholder="Tanggal Lahir" value="<%=apotek.getString("tanggal lahir")%>" />
+                <label for="aligned-tanggallahir">Harga</label>
+                <input type="text" name="harga" id="aligned-tanggallahir" placeholder="Harga" value="<%=apotek.getString("harga")%>" />
                 </select>
             </div>
 			<div class="pure-control-group">
-				<label for="aligned-alamat">Alamat</label>
-				<input type="text" name="alamat" id="aligned-alamat" placeholder="Alamat" value="<%=apotek.getString("alamat")%>" />
+				<label for="aligned-stok">Stok</label>
+				<input type="number" name="stok" id="aligned-stok" placeholder="Stok" value="<%=apotek.getString("stok")%>" />
 			</div>
-            <div class="pure-control-group">
-				<label for="aligned-obat">Obat</label>
-				<input type="text" name="obat" id="aligned-obat" placeholder="Obat" value="<%=apotek.getString("obat")%>" />
-			</div>
+
 		
 			<div class="pure-controls">
 				

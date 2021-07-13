@@ -8,11 +8,10 @@ import lombok.ToString;
 
 @Data public class FormApotek{
 
-	private String nama;
-	private String usia;
-	private String tanggallahir;
-	private String alamat;
-    private String obat;
+	private String kodeObat;
+	private String namaObat;
+	private String harga;
+	private String stok;
 	
 
 }

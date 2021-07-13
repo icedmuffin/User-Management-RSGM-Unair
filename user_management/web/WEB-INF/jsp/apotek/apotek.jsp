@@ -20,11 +20,11 @@ if(searchKey == null){
 if(action != null && action.equals("add_edit_apotek")){
 	
 	FormApotek fp = new FormApotek();
-	fp.setNama(request.getParameter("nama"));
-	fp.setUsia(request.getParameter("usia"));
-	fp.setTanggallahir(request.getParameter("tanggal lahir"));
-	fp.setAlamat(request.getParameter("alamat"));
-    fp.setObat(request.getParameter("obat"));
+	fp.setKodeObat(request.getParameter("kodeObat"));
+	fp.setNamaObat(request.getParameter("namaObat"));
+	fp.setHarga(request.getParameter("harga"));
+	fp.setStok(request.getParameter("stok"));
+
 
 	resp = ApotekManagement.CreateEditApotek(fp);
 	
@@ -71,7 +71,7 @@ if(apotek == null){
 		<p>menampilkan <%=pageApotek.getResultFrom()%> - <%=pageApotek.getResultTo()%> dari total <%=pageApotek.getTotalResults()%></p>
 		<form action="?act=apotek" method="post" class="pure-form">
 			<input type="hidden" name="action" value="cari_apotek" />
-			<input type="text" name="apotek_search_key" class="" placeholder="Nama" value="<%=searchKey%>" />
+			<input type="text" name="apotek_search_key" class="" placeholder="KodeObat" value="<%=searchKey%>" />
 			<input type="submit" class="pure-button pure-button-primary" value="cari" />
 		</form>
 		<br>
@@ -86,11 +86,10 @@ if(apotek == null){
 			<thead>
 				<tr>
 					<th>No</th>					
-					<th>Nama</th>
-					<th>Usia</th>
-					<th>Tanggal Lahir</th>
-					<th>Alamat</th>
-                    <th>Obat</th>
+					<th>KodeObat</th>
+					<th>NamaObat</th>
+					<th>Harga</th>
+					<th>Stok</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -100,17 +99,16 @@ if(apotek == null){
 				%>
 				<tr>
 					<td><%=(pageApotek.getResultFrom() + i)%></td>
-					<td><%=pageApotek.getResultList().get(i).getString("nama")%></td>
-					<td><%=pageApotek.getResultList().get(i).getString("usia")%></td>
-					<td><%=pageApotek.getResultList().get(i).getString("tanggal lahir")%></td>
-					<td><%=pageApotek.getResultList().get(i).getString("alamat")%></td>
-                    <td><%=pageApotek.getResultList().get(i).getString("obat")%></td>
+					<td><%=pageApotek.getResultList().get(i).getString("kodeObat")%></td>
+					<td><%=pageApotek.getResultList().get(i).getString("namaObat")%></td>
+					<td><%=pageApotek.getResultList().get(i).getString("harga")%></td>
+					<td><%=pageApotek.getResultList().get(i).getString("stok")%></td>
 					<td>
-						<a class="pure-button-primary pure-button" href="?act=view_apotek&nama=<%=pageApotek.getResultList().get(i).getString("nama")%>">View</a>
+						<a class="pure-button-primary pure-button" href="?act=view_apotek&kodeObat=<%=pageApotek.getResultList().get(i).getString("kodeObat")%>">View</a>
 						|
-						<a class="pure-button-primary pure-button" href="?act=edit_apotek&nama=<%=pageApotek.getResultList().get(i).getString("nama")%>">Edit</a>
+						<a class="pure-button-primary pure-button" href="?act=edit_apotek&kodeObat=<%=pageApotek.getResultList().get(i).getString("kodeObat")%>">Edit</a>
 						|
-						<a class="pure-button-primary pure-button" href="?act=delete_apotek&nama=<%=pageApotek.getResultList().get(i).getString("nama")%>">Delete</a>
+						<a class="pure-button-primary pure-button" href="?act=delete_apotek&kodeObat=<%=pageApotek.getResultList().get(i).getString("kodeObat")%>">Delete</a>
 					</td>
 				</tr>
 				<% } %>

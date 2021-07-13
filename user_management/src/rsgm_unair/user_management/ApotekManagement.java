@@ -29,10 +29,10 @@ public class ApotekManagement{
 		return apotek;
 	}
 	
-	public static void removeApotek(String nama) throws Exception{
+	public static void removeApotek(String kodeObat) throws Exception{
 		CouchdbClient usersClient = CouchHelper.createClient();
 		
-		usersClient.delDoc(nama);
+		usersClient.delDoc(kodeObat);
 		
 		usersClient = null;
 	}
@@ -42,49 +42,46 @@ public class ApotekManagement{
 		fr.setKode(Response.ERROR);
 		fr.setPesan("Ada field kosong");
 		
-		if(fp.getNama() != null && !fp.getNama().trim().equals("")){
+		    if(fp.getKodeObat() != null && !fp.getKodeObat().trim().equals("")){
 
-           	if(fp.getUsia() != null && !fp.getUsia().trim().equals("")){
+             	if(fp.getNamaObat() != null && !fp.getNamaObat().trim().equals("")){
 
-                if(fp.getTanggallahir() != null && !fp.getTanggallahir().trim().equals("")){
+                    if(fp.getHarga() != null && !fp.getHarga().trim().equals("")){
  
-			        if(fp.getAlamat() != null && !fp.getAlamat().trim().equals("")){
+			            if(fp.getStok() != null && !fp.getStok().trim().equals("")){
 
-                        if(fp.getObat() != null && !fp.getObat().trim().equals("")){
+                                CouchdbClient usersClient = CouchHelper.createClient();
+                                
+                                String id = "apotek:"+fp.getKodeObat();
+                                
+                                JSONObject apotek = usersClient.getDoc(id);
+                                
+                                if(!apotek.has("_id")){
+                                    apotek = createNewApotek();
+                                }
+                                
+                                apotek.put("kodeObat",fp.getKodeObat());
+                                apotek.put("namaObat",fp.getNamaObat());
+                                apotek.put("harga",fp.getHarga());
+                                apotek.put("stok",fp.getStok());
+     
+                                
+                                
+                                usersClient.setDoc(id,apotek);				
+                                
+                                usersClient = null;
+                                
+                                fr.setKode(Response.OK);
+                                fr.setPesan("Data Telah Disimpan");
+					
+				            
+                        }
 				
-					
-					CouchdbClient usersClient = CouchHelper.createClient();
-                    
-                    String id = "apotek:"+fp.getNama();
-					
-					JSONObject apotek = usersClient.getDoc(id);
-                    
-                    if(!apotek.has("_id")){
-                        apotek = createNewApotek();
-                    }
-                    
-                    apotek.put("nama",fp.getNama());
-                    apotek.put("usia",fp.getUsia());
-                    apotek.put("tanggal lahir",fp.getTanggallahir());
-                    apotek.put("alamat",fp.getAlamat());
-                    apotek.put("obat",fp.getObat());
-                    
-                    
-                    usersClient.setDoc(id,apotek);				
-					
-					usersClient = null;
-					
-					fr.setKode(Response.OK);
-					fr.setPesan("Data Telah Disimpan");
-					
-				}
-            }
-				
-                }	
+                    }	
 			
-		}
+		        }
         
-        }
+            }
 		return fr;
 	}
 	
@@ -145,11 +142,11 @@ public class ApotekManagement{
     
     public static JSONObject createNewApotek(){	
         JSONObject apotek = new JSONObject();
-        apotek.put("nama","");
-        apotek.put("usia","");
-        apotek.put("tanggal lahir","");
-        apotek.put("alamat","");
-        apotek.put("obat","");
+        apotek.put("kodeObat","");
+        apotek.put("namaObat","");
+        apotek.put("harga","");
+        apotek.put("stok","");
+
         
 
         return apotek;
