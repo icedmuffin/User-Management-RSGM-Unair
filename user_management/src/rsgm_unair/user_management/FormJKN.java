@@ -1,4 +1,4 @@
-package rsgm_unair.user_management;
+package rsgm_unair.jkn;
 
 import lombok.AccessLevel;
 import lombok.Setter;

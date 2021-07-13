@@ -1,4 +1,4 @@
-<%@ page import="rsgm_unair.user_management.*" %>
+<%@ page import="rsgm_unair.jkn.*" %>
 <%@ page import="org.json.*" %>
 <%
 String nik = request.getParameter("nik");

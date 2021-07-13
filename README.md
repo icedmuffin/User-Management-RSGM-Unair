@@ -32,3 +32,6 @@ Requirement permodul - DONE.
     
 7 Juli 2021
 Modul JKN diperbarui
+
+10 Juli 2021
+Modul JKN selesai
