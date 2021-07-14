@@ -9,7 +9,7 @@ JSONObject rekammedik = RekammedikManagement.findRekammedik(nama);
 			<div class="pure-u-1-3">
 			</div>
 			<div class="pure-u-1-3">
-				<p style="background-color:navajowhite;">Informasi lengkap Pasien</p>
+				<p style="background-color:navajowhite;">rekam medik pasien <%=rekammedik.getString("nama")%></p>
 				
 				<table border="0">
 					<tr>

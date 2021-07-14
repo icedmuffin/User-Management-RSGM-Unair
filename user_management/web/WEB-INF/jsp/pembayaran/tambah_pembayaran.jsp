@@ -51,8 +51,8 @@ if(pembayaran == null){
 
 <div class="pure-g">
 	<div class="pure-u-1-3" align="center">
-		<h2>Tambah Nominal Pasien</h2>
-		<hr>
+		<h2>Masukan Pembayaran baru</h2>
+		<br>
 		
 	</div>
 	
