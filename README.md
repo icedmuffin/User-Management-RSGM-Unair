@@ -1,8 +1,9 @@
+# Summary
 Apa repository ini?\
-  Ini adalah repository kerja kelompok 1, matakuliah Rancang Bangun Perangkat Lunak, Departemen Sistem Informasi ITS\
+  Ini adalah repository kerja Project Modul User Management RSGM Unair kelompok 1, matakuliah Rancang Bangun Perangkat Lunak, Departemen Sistem Informasi ITS\
 \
 Summary repository ?\
-  dalam project ini kita melakukan development software untuk RSGM Unair, dengan 5 modul utama,\
+  dalam project ini kita melakukan development software untuk RSGM Unair menggunakan bahasa pemrograman java, dengan 5 modul utama,\
   modul tediri dari modul :
   
   1. Pendaftaran
@@ -10,6 +11,11 @@ Summary repository ?\
   4. Rekam Medik
   3. Apotek
   5. Jaminan Kesehatan Nasional
+
+Software Yang di butuhkan
+ - Apache CoachDB, digunakan untuk database modul
+ - Apache Ant, Mekanisme deploy
+ - Apache Tomcat, Server untuk deploy Software
   
   
 # rbpl_c_kelompok1
@@ -20,32 +26,32 @@ Surya Eka Adji Winanto - 05211840000097
 Naufal Fakhri Ardhan Laxito - 05211840000130  
   
   
-Progress per:  
-  
-15 Juni 2021  
-Requirement permodul - DONE. 
+# Timeline
+ 
+15 Juni 2021 insisasi - 13 juli 2021
+Requirement permodul. 
       
     - high level requirement  
     - GUI storyborad  
     - use case  
     - rubustness analysis  
-    
-7 Juli 2021
-Modul JKN diperbarui
 
-10 Juli 2021
-Modul JKN selesai
-
-13 Juli 2021
-all modul - selesai
-semua fungsi dasar berhasil dijalankan
-
-dokumen view name - apache coachDB
+# Setup
+Setup Server
 ```
-- modul Pendaftaran --> pendaftaran
-- modul Pembayaran --> pembayaran
-- modul Rekam Medik --> rekammedik
-- modul JKN --> jkn
+database name : rsgm_unair
+```
+dokumen view name - apache coachDB 
+```
+- user
+- dokter
+- pasien
+- pendaftaran
+- pembayaran
+- rekammedik
+- apotek
+- igd
+- jkn
 ```
 script map function
 ```
@@ -55,6 +61,17 @@ emit(doc._id, null);
 }
 }
 ```
+
+Inisiasi Sofware
+```
+url_local_host/user_management/pre_seed
+```
+
+Akses Admin 
+```
+username : admin
+password : admin123
+````
 
 command ant all-remove-install
 ```
